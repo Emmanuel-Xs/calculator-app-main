@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/calculator-light.svg"
+    />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
+    <title>Calculator app | Frontend Mentor Challenge</title>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="calculator-head">
+        <div class="calculator-header">
+          <div class="calculator-title">calc</div>
+          <div class="calculator-theme">
+            <span>THEME</span>
+            <div class="theme-switcher">
+              <select id="theme-toggle" data-theme-toggle>
+                <option value="1">Dark Navy</option>
+                <option value="2">Light Gray</option>
+                <option value="3">Dark Purple</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="calculator-display">
+          <div id="previous-operand" class="previous">1 +</div>
+          <div id="current-operand" class="current">10,000</div>
+        </div>
+      </div>
+      <div class="calculator-body keys">
+        <button data-number="7" class="btn digit">7</button>
+        <button data-number="8" class="btn digit">8</button>
+        <button data-number="9" class="btn digit">9</button>
+        <button data-action="delete" class="btn delete">DEL</button>
+        <button data-number="4" class="btn digit">4</button>
+        <button data-number="5" class="btn digit">5</button>
+        <button data-number="6" class="btn digit">6</button>
+        <button data-operator="add" class="btn operator">+</button>
+        <button data-number="1" class="btn digit">1</button>
+        <button data-number="2" class="btn digit">2</button>
+        <button data-number="3" class="btn digit">3</button>
+        <button data-operator="subtract" class="btn operator">-</button>
+        <button data-number="." class="btn digit">.</button>
+        <button data-number="0" class="btn digit">0</button>
+        <button data-operator="divide" class="btn operator">/</button>
+        <button data-operator="multiply" class="btn operator">x</button>
+        <button data-action="reset" class="btn reset">RESET</button>
+        <button data-operator="equals" class="btn equals">=</button>
+      </div>
+    </div>
+    <p class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29"
+        target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="http://github.com/Emmanuel-Xs/" target="_blank"
+        >Nwaohiri Emmanuel</a
+      >.
+    </p>
+  </body>
+</html>

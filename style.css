@@ -1,0 +1,299 @@
+:root {
+  /* ===== THEME 1: DARK NAVY ===== */
+
+  /* Backgrounds */
+  --theme1-bg-main: hsl(222, 26%, 31%);
+  --theme1-bg-toggle: hsl(223, 31%, 20%);
+  --theme1-bg-keypad: hsl(223, 31%, 20%);
+  --theme1-bg-screen: hsl(224, 36%, 15%);
+
+  /* Key Backgrounds */
+  --theme1-key-primary-bg: hsl(225, 21%, 49%);
+  --theme1-key-primary-shadow: hsl(224, 28%, 35%);
+
+  --theme1-key-accent-bg: hsl(6, 63%, 50%);
+  --theme1-key-accent-shadow: hsl(6, 70%, 34%);
+
+  --theme1-key-secondary-bg: hsl(0, 0%, 90%);
+  --theme1-key-secondary-shadow: hsl(28, 16%, 65%);
+
+  /* Text Colors */
+  --theme1-text-key-foreground: hsl(221, 14%, 31%);
+  --theme1-text-primary-foreground: hsl(0, 100%, 100%);
+
+  /* ===== THEME 2: LIGHT GRAY ===== */
+
+  /* Backgrounds */
+  --theme2-bg-main: hsl(0, 0%, 90%);
+  --theme2-bg-toggle: hsl(0, 5%, 81%);
+  --theme2-bg-keypad: hsl(0, 5%, 81%);
+  --theme2-bg-screen: hsl(0, 0%, 93%);
+
+  /* Key Backgrounds */
+  --theme2-key-primary-bg: hsl(185, 42%, 37%);
+  --theme2-key-primary-shadow: hsl(185, 58%, 25%);
+
+  --theme2-key-accent-bg: hsl(25, 98%, 40%);
+  --theme2-key-accent-shadow: hsl(25, 99%, 27%);
+
+  --theme2-key-secondary-bg: hsl(0, 0%, 90%);
+  --theme2-key-secondary-shadow: hsl(35, 11%, 61%);
+
+  /* Text Colors */
+  --theme2-text-key-foreground: hsl(60, 10%, 19%);
+  --theme2-text-primary-foreground: hsl(0, 100%, 100%);
+
+  /* ===== THEME 3: DARK PURPLE ===== */
+
+  /* Backgrounds */
+  --theme3-bg-main: hsl(268, 75%, 9%);
+  --theme3-bg-toggle: hsl(268, 71%, 12%);
+  --theme3-bg-keypad: hsl(268, 71%, 12%);
+  --theme3-bg-screen: hsl(268, 71%, 12%);
+
+  /* Key Backgrounds */
+  --theme3-key-primary-bg: hsl(281, 89%, 26%);
+  --theme3-key-primary-shadow: hsl(285, 91%, 52%);
+
+  --theme3-key-accent-bg: hsl(176, 100%, 44%);
+  --theme3-key-accent-shadow: hsl(177, 92%, 70%);
+
+  --theme3-key-secondary-bg: hsl(268, 47%, 21%);
+  --theme3-key-secondary-shadow: hsl(290, 70%, 36%);
+
+  /* Text Colors */
+  --theme3-text-key-foreground: hsl(52, 100%, 62%);
+  --theme3-text-secondary: hsl(198, 20%, 13%);
+  --theme3-text-primary-foreground: hsl(0, 100%, 100%);
+
+  /* ===== ACTIVE THEME (default to Theme 1) ===== */
+  --bg-main: var(--theme1-bg-main);
+  --bg-main-foreground: var(--theme1-text-primary-foreground);
+  --bg-toggle: var(--theme1-bg-toggle);
+  --bg-keypad: var(--theme1-bg-keypad);
+  --bg-screen: var(--theme1-bg-screen);
+
+  --key-primary-bg: var(--theme1-key-primary-bg);
+  --key-primary-shadow: var(--theme1-key-primary-shadow);
+
+  --key-accent-bg: var(--theme1-key-accent-bg);
+  --key-accent-shadow: var(--theme1-key-accent-shadow);
+
+  --key-secondary-bg: var(--theme1-key-secondary-bg);
+  --key-secondary-shadow: var(--theme1-key-secondary-shadow);
+
+  --text-key-foreground: var(--theme1-text-key-foreground);
+  --text-primary-foreground: var(--theme1-text-primary-foreground);
+
+  /* ===== TYPOGRAPHY ===== */
+  --font-family: "League Spartan", sans-serif;
+  --font-weight: 700;
+  --font-size-number: 2rem;
+
+  /* ===== LAYOUT ===== */
+  --mobile-width: 375px;
+  --desktop-width: 1440px;
+}
+
+/* Manual theme overrides */
+[data-theme="1"] {
+  --bg-main: var(--theme1-bg-main);
+  --bg-main-foreground: var(--theme1-text-primary-foreground);
+  --bg-toggle: var(--theme1-bg-toggle);
+  --bg-keypad: var(--theme1-bg-keypad);
+  --bg-screen: var(--theme1-bg-screen);
+  --key-primary-bg: var(--theme1-key-primary-bg);
+  --key-primary-shadow: var(--theme1-key-primary-shadow);
+  --key-accent-bg: var(--theme1-key-accent-bg);
+  --key-accent-shadow: var(--theme1-key-accent-shadow);
+  --key-secondary-bg: var(--theme1-key-secondary-bg);
+  --key-secondary-shadow: var(--theme1-key-secondary-shadow);
+  --text-key-foreground: var(--theme1-text-key-foreground);
+  --text-primary-foreground: var(--theme1-text-primary-foreground);
+}
+
+[data-theme="2"] {
+  --bg-main: var(--theme2-bg-main);
+  --bg-main-foreground: var(--theme2-text-key-foreground);
+  --bg-toggle: var(--theme2-bg-toggle);
+  --bg-keypad: var(--theme2-bg-keypad);
+  --bg-screen: var(--theme2-bg-screen);
+  --key-primary-bg: var(--theme2-key-primary-bg);
+  --key-primary-shadow: var(--theme2-key-primary-shadow);
+  --key-accent-bg: var(--theme2-key-accent-bg);
+  --key-accent-shadow: var(--theme2-key-accent-shadow);
+  --key-secondary-bg: var(--theme2-key-secondary-bg);
+  --key-secondary-shadow: var(--theme2-key-secondary-shadow);
+  --text-key-foreground: var(--theme2-text-key-foreground);
+  --text-primary-foreground: var(--theme2-text-primary-foreground);
+}
+
+[data-theme="3"] {
+  --bg-main: var(--theme3-bg-main);
+  --bg-main-foreground: var(--theme1-text-primary-foreground);
+  --bg-toggle: var(--theme3-bg-toggle);
+  --bg-keypad: var(--theme3-bg-keypad);
+  --bg-screen: var(--theme3-bg-screen);
+  --key-primary-bg: var(--theme3-key-primary-bg);
+  --key-primary-shadow: var(--theme3-key-primary-shadow);
+  --key-accent-bg: var(--theme3-key-accent-bg);
+  --key-accent-shadow: var(--theme3-key-accent-shadow);
+  --key-secondary-bg: var(--theme3-key-secondary-bg);
+  --key-secondary-shadow: var(--theme3-key-secondary-shadow);
+  --text-key-foreground: var(--theme3-text-key-foreground);
+  --text-primary-foreground: var(--theme3-text-primary-foreground);
+}
+
+/* Auto-switch to Theme 2 for light mode preference */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-main: var(--theme2-bg-main);
+    --bg-main-foreground: var(--theme2-text-key-foreground);
+    --bg-toggle: var(--theme2-bg-toggle);
+    --bg-keypad: var(--theme2-bg-keypad);
+    --bg-screen: var(--theme2-bg-screen);
+    --key-primary-bg: var(--theme2-key-primary-bg);
+    --key-primary-shadow: var(--theme2-key-primary-shadow);
+    --key-accent-bg: var(--theme2-key-accent-bg);
+    --key-accent-shadow: var(--theme2-key-accent-shadow);
+    --key-secondary-bg: var(--theme2-key-secondary-bg);
+    --key-secondary-shadow: var(--theme2-key-secondary-shadow);
+    --text-key-foreground: var(--theme2-text-key-foreground);
+    --text-primary-foreground: var(--theme2-text-primary-foreground);
+  }
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
+body {
+  font-family: var(--font-family);
+  font-optical-sizing: auto;
+  font-weight: var(--font-weight);
+  font-style: normal;
+  font-size: var(--font-size-number);
+  /* line-height: 1.5; */
+  color: var(--bg-main-foreground);
+  background-color: var(--bg-main);
+  /* display: flex; */
+  /* flex-direction: column; */
+  width: min(calc(100% - 1.5rem), var(--desktop-width));
+  margin-inline: auto;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* min-height: 100dvh; */
+  margin-block: 2em;
+  overflow: hidden;
+}
+
+.calculator {
+  --calculator-width: 345px;
+  width: min(100%, var(--calculator-width));
+  margin-inline: auto;
+
+  @media (min-width: 360px) {
+    width: min(90%, var(--calculator-width));
+  }
+}
+
+.calculator-head {
+  margin-block-end: 0.5em;
+
+  & > div:first-child {
+    margin-bottom: 0.3em;
+  }
+}
+
+.calculator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid wheat; */
+}
+
+.calculator-theme {
+  align-self: self-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7em;
+  /* border: 1px solid wheat; */
+
+  span {
+    font-size: 0.8rem;
+  }
+}
+
+.calculator-display {
+  background-color: var(--bg-screen);
+  border-radius: 0.5rem;
+  padding-inline: 0.3em;
+  padding-block-start: 0.3em;
+  padding-block-end: 0.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.3em;
+
+  .previous {
+    font-size: 1rem;
+  }
+}
+
+.calculator-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  background-color: var(--bg-keypad);
+  border-radius: 0.5rem;
+  padding: 0.5em;
+  gap: 0.4em;
+
+  .btn {
+    border: none;
+    border-block-end: 4px solid var(--key-secondary-shadow);
+    border-radius: 0.5rem;
+    padding: 0.5em;
+    outline: transparent;
+    font-size: 1.5rem;
+    font-weight: inherit;
+    background-color: var(--key-secondary-bg);
+    color: var(--text-key-foreground);
+    cursor: pointer;
+  }
+
+  .delete {
+    background-color: var(--key-primary-bg);
+    border-block-end: 4px solid var(--key-primary-shadow);
+    color: var(--text-primary-foreground);
+  }
+
+  .reset {
+    grid-column: span 2;
+    background-color: var(--key-primary-bg);
+    border-block-end: 4px solid var(--key-primary-shadow);
+    color: var(--text-primary-foreground);
+  }
+
+  .equals {
+    grid-column: span 2;
+    background-color: var(--key-accent-bg);
+    border-block-end: 4px solid var(--key-accent-shadow);
+    color: var(--text-primary-foreground);
+  }
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  margin-block-start: 1em;
+}
+.attribution a {
+  color: var(--bg-screen);
+}
