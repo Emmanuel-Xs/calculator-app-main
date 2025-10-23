@@ -19,8 +19,22 @@
       rel="stylesheet"
     />
 
+    <script>
+      // Set theme immediately before CSS loads
+      (function () {
+        const savedTheme = localStorage.getItem("cal-theme");
+        const systemPrefersLight = window.matchMedia(
+          "(prefers-color-scheme: light)"
+        ).matches;
+        const preferredTheme = savedTheme || (systemPrefersLight ? "2" : "1");
+
+        localStorage.setItem("cal-theme", preferredTheme);
+        document.documentElement.setAttribute("data-theme", preferredTheme);
+      })();
+    </script>
+
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js" defer></script>
 
     <title>Calculator app | Frontend Mentor Challenge</title>
   </head>
@@ -29,14 +43,32 @@
       <div class="calculator-head">
         <div class="calculator-header">
           <div class="calculator-title">calc</div>
-          <div class="calculator-theme">
-            <span>THEME</span>
-            <div class="theme-switcher">
-              <select id="theme-toggle" data-theme-toggle>
-                <option value="1">Dark Navy</option>
-                <option value="2">Light Gray</option>
-                <option value="3">Dark Purple</option>
-              </select>
+          <div class="theme-switcher">
+            <span class="theme-label">THEME</span>
+            <div class="theme-toggle-container">
+              <div class="theme-numbers">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+              </div>
+              <div class="theme-toggle">
+                <input
+                  type="radio"
+                  name="theme"
+                  id="theme1"
+                  value="1"
+                  checked
+                />
+                <label for="theme1" class="theme-option"></label>
+
+                <input type="radio" name="theme" id="theme2" value="2" />
+                <label for="theme2" class="theme-option"></label>
+
+                <input type="radio" name="theme" id="theme3" value="3" />
+                <label for="theme3" class="theme-option"></label>
+
+                <div class="theme-indicator"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -72,11 +104,12 @@
       <a
         href="https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29"
         target="_blank"
-        >Frontend Mentor</a
-      >. Coded by
+        >Frontend Mentor.</a
+      >
+      Coded by
       <a href="http://github.com/Emmanuel-Xs/" target="_blank"
-        >Nwaohiri Emmanuel</a
-      >.
+        >Nwaohiri Emmanuel.</a
+      >
     </p>
   </body>
 </html>

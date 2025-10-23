@@ -10,16 +10,21 @@
   /* Key Backgrounds */
   --theme1-key-primary-bg: hsl(225, 21%, 49%);
   --theme1-key-primary-shadow: hsl(224, 28%, 35%);
+  --theme1-key-primary-hover: hsl(225, 21%, 65%);
 
   --theme1-key-accent-bg: hsl(6, 63%, 50%);
   --theme1-key-accent-shadow: hsl(6, 70%, 34%);
+  --theme1-key-accent-hover: hsl(6, 63%, 65%);
 
   --theme1-key-secondary-bg: hsl(0, 0%, 90%);
   --theme1-key-secondary-shadow: hsl(28, 16%, 65%);
+  --theme1-key-secondary-hover: hsl(0, 0%, 100%);
 
   /* Text Colors */
   --theme1-text-key-foreground: hsl(221, 14%, 31%);
   --theme1-text-primary-foreground: hsl(0, 100%, 100%);
+  --theme1-text-attribution: hsl(0, 100%, 100%);
+  --theme1-text-attribution-link: hsl(6, 73%, 18%);
 
   /* ===== THEME 2: LIGHT GRAY ===== */
 
@@ -32,16 +37,21 @@
   /* Key Backgrounds */
   --theme2-key-primary-bg: hsl(185, 42%, 37%);
   --theme2-key-primary-shadow: hsl(185, 58%, 25%);
+  --theme2-key-primary-hover: hsl(185, 42%, 50%);
 
   --theme2-key-accent-bg: hsl(25, 98%, 40%);
   --theme2-key-accent-shadow: hsl(25, 99%, 27%);
+  --theme2-key-accent-hover: hsl(25, 98%, 55%);
 
   --theme2-key-secondary-bg: hsl(0, 0%, 90%);
   --theme2-key-secondary-shadow: hsl(35, 11%, 61%);
+  --theme2-key-secondary-hover: hsl(0, 0%, 100%);
 
   /* Text Colors */
   --theme2-text-key-foreground: hsl(60, 10%, 19%);
   --theme2-text-primary-foreground: hsl(0, 100%, 100%);
+  --theme2-text-attribution: hsl(60, 10%, 19%);
+  --theme2-text-attribution-link: hsl(25, 98%, 40%);
 
   /* ===== THEME 3: DARK PURPLE ===== */
 
@@ -54,17 +64,22 @@
   /* Key Backgrounds */
   --theme3-key-primary-bg: hsl(281, 89%, 26%);
   --theme3-key-primary-shadow: hsl(285, 91%, 52%);
+  --theme3-key-primary-hover: hsl(281, 89%, 40%);
 
   --theme3-key-accent-bg: hsl(176, 100%, 44%);
   --theme3-key-accent-shadow: hsl(177, 92%, 70%);
+  --theme3-key-accent-hover: hsl(176, 95%, 35%);
 
   --theme3-key-secondary-bg: hsl(268, 47%, 21%);
   --theme3-key-secondary-shadow: hsl(290, 70%, 36%);
+  --theme3-key-secondary-hover: hsl(268, 47%, 35%);
 
   /* Text Colors */
   --theme3-text-key-foreground: hsl(52, 100%, 62%);
   --theme3-text-secondary: hsl(198, 20%, 13%);
   --theme3-text-primary-foreground: hsl(0, 100%, 100%);
+  --theme3-text-attribution: hsl(52, 100%, 62%);
+  --theme3-text-attribution-link: hsl(176, 100%, 44%);
 
   /* ===== ACTIVE THEME (default to Theme 1) ===== */
   --bg-main: var(--theme1-bg-main);
@@ -72,18 +87,23 @@
   --bg-toggle: var(--theme1-bg-toggle);
   --bg-keypad: var(--theme1-bg-keypad);
   --bg-screen: var(--theme1-bg-screen);
-
   --key-primary-bg: var(--theme1-key-primary-bg);
   --key-primary-shadow: var(--theme1-key-primary-shadow);
+  --key-primary-hover: var(--theme1-key-primary-hover);
 
   --key-accent-bg: var(--theme1-key-accent-bg);
+  --key-accent-foreground: var(--theme1-text-primary-foreground);
   --key-accent-shadow: var(--theme1-key-accent-shadow);
+  --key-accent-hover: var(--theme1-key-accent-hover);
 
   --key-secondary-bg: var(--theme1-key-secondary-bg);
   --key-secondary-shadow: var(--theme1-key-secondary-shadow);
+  --key-secondary-hover: var(--theme1-key-secondary-hover);
 
   --text-key-foreground: var(--theme1-text-key-foreground);
   --text-primary-foreground: var(--theme1-text-primary-foreground);
+  --text-attribution: var(--theme1-text-attribution);
+  --text-attribution-link: var(--theme1-text-attribution-link);
 
   /* ===== TYPOGRAPHY ===== */
   --font-family: "League Spartan", sans-serif;
@@ -93,6 +113,35 @@
   /* ===== LAYOUT ===== */
   --mobile-width: 375px;
   --desktop-width: 1440px;
+
+  /* ===== THEME INDICATOR POSITIONS ===== */
+  --theme-indicator-position: 0; /* Default to theme 1 */
+}
+
+/* Fallback: Auto light mode if no JS */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg-main: var(--theme2-bg-main);
+    --bg-main-foreground: var(--theme2-text-key-foreground);
+    --bg-toggle: var(--theme2-bg-toggle);
+    --bg-keypad: var(--theme2-bg-keypad);
+    --bg-screen: var(--theme2-bg-screen);
+    --key-primary-bg: var(--theme2-key-primary-bg);
+    --key-primary-shadow: var(--theme2-key-primary-shadow);
+    --key-primary-hover: var(--theme2-key-primary-hover);
+    --key-accent-bg: var(--theme2-key-accent-bg);
+    --key-accent-foreground: var(--theme2-text-primary-foreground);
+    --key-accent-shadow: var(--theme2-key-accent-shadow);
+    --key-accent-hover: var(--theme2-key-accent-hover);
+    --key-secondary-bg: var(--theme2-key-secondary-bg);
+    --key-secondary-shadow: var(--theme2-key-secondary-shadow);
+    --key-secondary-hover: var(--theme2-key-secondary-hover);
+    --text-key-foreground: var(--theme2-text-key-foreground);
+    --text-primary-foreground: var(--theme2-text-primary-foreground);
+    --text-attribution: var(--theme2-text-attribution);
+    --text-attribution-link: var(--theme2-text-attribution-link);
+    --theme-indicator-position: 204%;
+  }
 }
 
 /* Manual theme overrides */
@@ -104,12 +153,19 @@
   --bg-screen: var(--theme1-bg-screen);
   --key-primary-bg: var(--theme1-key-primary-bg);
   --key-primary-shadow: var(--theme1-key-primary-shadow);
+  --key-primary-hover: var(--theme1-key-primary-hover);
   --key-accent-bg: var(--theme1-key-accent-bg);
+  --key-accent-foreground: var(--theme1-text-primary-foreground);
   --key-accent-shadow: var(--theme1-key-accent-shadow);
+  --key-accent-hover: var(--theme1-key-accent-hover);
   --key-secondary-bg: var(--theme1-key-secondary-bg);
   --key-secondary-shadow: var(--theme1-key-secondary-shadow);
+  --key-secondary-hover: var(--theme1-key-secondary-hover);
   --text-key-foreground: var(--theme1-text-key-foreground);
   --text-primary-foreground: var(--theme1-text-primary-foreground);
+  --text-attribution: var(--theme1-text-attribution);
+  --text-attribution-link: var(--theme1-text-attribution-link);
+  --theme-indicator-position: 0;
 }
 
 [data-theme="2"] {
@@ -120,47 +176,42 @@
   --bg-screen: var(--theme2-bg-screen);
   --key-primary-bg: var(--theme2-key-primary-bg);
   --key-primary-shadow: var(--theme2-key-primary-shadow);
+  --key-primary-hover: var(--theme2-key-primary-hover);
   --key-accent-bg: var(--theme2-key-accent-bg);
+  --key-accent-foreground: var(--theme2-text-primary-foreground);
   --key-accent-shadow: var(--theme2-key-accent-shadow);
+  --key-accent-hover: var(--theme2-key-accent-hover);
   --key-secondary-bg: var(--theme2-key-secondary-bg);
   --key-secondary-shadow: var(--theme2-key-secondary-shadow);
+  --key-secondary-hover: var(--theme2-key-secondary-hover);
   --text-key-foreground: var(--theme2-text-key-foreground);
   --text-primary-foreground: var(--theme2-text-primary-foreground);
+  --text-attribution: var(--theme2-text-attribution);
+  --text-attribution-link: var(--theme2-text-attribution-link);
+  --theme-indicator-position: 204%;
 }
 
 [data-theme="3"] {
   --bg-main: var(--theme3-bg-main);
-  --bg-main-foreground: var(--theme1-text-primary-foreground);
+  --bg-main-foreground: var(--theme3-text-key-foreground);
   --bg-toggle: var(--theme3-bg-toggle);
   --bg-keypad: var(--theme3-bg-keypad);
   --bg-screen: var(--theme3-bg-screen);
   --key-primary-bg: var(--theme3-key-primary-bg);
   --key-primary-shadow: var(--theme3-key-primary-shadow);
+  --key-primary-hover: var(--theme3-key-primary-hover);
   --key-accent-bg: var(--theme3-key-accent-bg);
+  --key-accent-foreground: var(--theme2-text-key-foreground);
   --key-accent-shadow: var(--theme3-key-accent-shadow);
+  --key-accent-hover: var(--theme3-key-accent-hover);
   --key-secondary-bg: var(--theme3-key-secondary-bg);
   --key-secondary-shadow: var(--theme3-key-secondary-shadow);
+  --key-secondary-hover: var(--theme3-key-secondary-hover);
   --text-key-foreground: var(--theme3-text-key-foreground);
   --text-primary-foreground: var(--theme3-text-primary-foreground);
-}
-
-/* Auto-switch to Theme 2 for light mode preference */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-main: var(--theme2-bg-main);
-    --bg-main-foreground: var(--theme2-text-key-foreground);
-    --bg-toggle: var(--theme2-bg-toggle);
-    --bg-keypad: var(--theme2-bg-keypad);
-    --bg-screen: var(--theme2-bg-screen);
-    --key-primary-bg: var(--theme2-key-primary-bg);
-    --key-primary-shadow: var(--theme2-key-primary-shadow);
-    --key-accent-bg: var(--theme2-key-accent-bg);
-    --key-accent-shadow: var(--theme2-key-accent-shadow);
-    --key-secondary-bg: var(--theme2-key-secondary-bg);
-    --key-secondary-shadow: var(--theme2-key-secondary-shadow);
-    --text-key-foreground: var(--theme2-text-key-foreground);
-    --text-primary-foreground: var(--theme2-text-primary-foreground);
-  }
+  --text-attribution: var(--theme3-text-attribution);
+  --text-attribution-link: var(--theme3-text-attribution-link);
+  --theme-indicator-position: 378%;
 }
 
 *,
@@ -177,27 +228,27 @@ body {
   font-weight: var(--font-weight);
   font-style: normal;
   font-size: var(--font-size-number);
-  /* line-height: 1.5; */
+  line-height: 1.2;
   color: var(--bg-main-foreground);
   background-color: var(--bg-main);
-  /* display: flex; */
-  /* flex-direction: column; */
   width: min(calc(100% - 1.5rem), var(--desktop-width));
   margin-inline: auto;
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* min-height: 100dvh; */
-  margin-block: 2em;
+  margin-block: 1.4em;
   overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  @media (min-width: 360px) {
+    margin-block-start: 2em;
+  }
 }
 
 .calculator {
-  --calculator-width: 345px;
+  --calculator-width: 375px;
   width: min(100%, var(--calculator-width));
   margin-inline: auto;
 
   @media (min-width: 360px) {
-    width: min(90%, var(--calculator-width));
+    width: min(95%, var(--calculator-width));
   }
 }
 
@@ -205,7 +256,7 @@ body {
   margin-block-end: 0.5em;
 
   & > div:first-child {
-    margin-bottom: 0.3em;
+    margin-bottom: 0.8em;
   }
 }
 
@@ -213,20 +264,95 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid wheat; */
 }
 
-.calculator-theme {
-  align-self: self-end;
+.theme-switcher {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 0.7em;
   /* border: 1px solid wheat; */
 
-  span {
-    font-size: 0.8rem;
+  .theme-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-block-start: 1.8em;
   }
+
+  .theme-toggle-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.175em;
+  }
+
+  .theme-numbers {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 0.175em;
+
+    span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 1.5rem;
+      text-align: center;
+      /* border: 1px solid wheat; */
+    }
+  }
+
+  .theme-toggle {
+    background-color: var(--bg-toggle);
+    border-radius: 1.5rem;
+    padding: 0.1em;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+
+  .theme-toggle input[type="radio"] {
+    display: none;
+  }
+
+  .theme-option {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    /* background-color: yellow; */
+    z-index: 2;
+    transition: transform 0.2s ease;
+  }
+
+  /* makes it easier to select the radio button*/
+  .theme-option:hover {
+    transform: scale(1.5);
+  }
+
+  .theme-indicator {
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--key-accent-bg);
+    top: 0.2rem;
+    left: 0.25rem;
+    z-index: 3;
+    transform: translateX(var(--theme-indicator-position));
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.3s ease;
+  }
+
+  /* #theme1:checked ~ .theme-indicator {
+    transform: translateX(0);
+  }
+
+  #theme2:checked ~ .theme-indicator {
+    transform: translateX(204%);
+  }
+
+  #theme3:checked ~ .theme-indicator {
+    transform: translateX(378%);
+  } */
 }
 
 .calculator-display {
@@ -261,17 +387,35 @@ body {
     border-radius: 0.5rem;
     padding: 0.5em;
     outline: transparent;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: inherit;
     background-color: var(--key-secondary-bg);
     color: var(--text-key-foreground);
     cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    @media (min-width: 400px) {
+      font-size: 2rem;
+    }
+  }
+
+  .btn:hover {
+    background-color: var(--key-secondary-hover);
+  }
+
+  .btn:active {
+    transform: translateY(2px);
+    border-block-end-width: 0.5px;
   }
 
   .delete {
     background-color: var(--key-primary-bg);
     border-block-end: 4px solid var(--key-primary-shadow);
     color: var(--text-primary-foreground);
+  }
+
+  .delete:hover {
+    background-color: var(--key-primary-hover);
   }
 
   .reset {
@@ -281,11 +425,19 @@ body {
     color: var(--text-primary-foreground);
   }
 
+  .reset:hover {
+    background-color: var(--key-primary-hover);
+  }
+
   .equals {
     grid-column: span 2;
     background-color: var(--key-accent-bg);
     border-block-end: 4px solid var(--key-accent-shadow);
-    color: var(--text-primary-foreground);
+    color: var(--key-accent-foreground);
+  }
+
+  .equals:hover {
+    background-color: var(--key-accent-hover);
   }
 }
 
@@ -293,7 +445,16 @@ body {
   font-size: 11px;
   text-align: center;
   margin-block-start: 1em;
+  color: var(--text-attribution);
 }
 .attribution a {
-  color: var(--bg-screen);
+  color: var(--text-attribution-link);
+  text-decoration: none;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+
+.attribution a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
