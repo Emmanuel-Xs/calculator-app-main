@@ -1,5 +1,5 @@
+import { initializeCalculator } from "./calculator.js";
 import { initializeTheme } from "./theme.js";
 
 initializeTheme();
-
-// Your calculator logic will go here...
+initializeCalculator();

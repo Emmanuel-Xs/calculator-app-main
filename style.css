@@ -366,6 +366,9 @@ body {
   justify-content: center;
   align-items: flex-end;
   gap: 0.3em;
+  min-height: 4rem;
+  text-align: end;
+  overflow-wrap: anywhere;
 
   .previous {
     font-size: 1rem;
