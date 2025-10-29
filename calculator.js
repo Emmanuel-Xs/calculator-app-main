@@ -1,14 +1,20 @@
-// Select DOM elements
+import { createAnimationHandlers } from "./animation.js";
+
 const previousOperandElement = document.getElementById("previous-operand");
 const currentOperandElement = document.getElementById("current-operand");
 const keysContainer = document.querySelector(".keys");
+
+const animationHandlers = createAnimationHandlers(
+  currentOperandElement,
+  previousOperandElement
+);
 
 // Calculator state
 const calculatorState = {
   previousOperand: "",
   currentOperand: "0",
   operator: null,
-  isResult: false, // Flag to check if currentOperand is a result
+  hasResult: false, // Flag to check if currentOperand is a result
 };
 
 // Operator symbol mapping for keyboard input
@@ -28,7 +34,11 @@ const operatorSymbols = {
   divide: "/",
 };
 
-// Format number with commas
+/**
+ * Formats a number string with commas for thousands separators.
+ * @param {string | number} number The number to format.
+ * @returns {string} The formatted number string.
+ */
 function formatNumber(number) {
   if (number === null || number === "") return "";
   const stringNumber = String(number);
@@ -45,27 +55,32 @@ function formatNumber(number) {
   return integerDisplay;
 }
 
-// Update the display
-function updateDisplay() {
-  currentOperandElement.textContent =
-    formatNumber(calculatorState.currentOperand) || "0";
+/**
+ * Updates the calculator display with the current state and applies an animation.
+ * @param {string} [animationType="default"] The type of animation to apply.
+ */
+function updateDisplay(animationType = "default") {
+  const currentText = formatNumber(calculatorState.currentOperand) || "0";
+  const previousText =
+    calculatorState.operator && calculatorState.previousOperand
+      ? `${formatNumber(calculatorState.previousOperand)} ${
+          operatorSymbols[calculatorState.operator] || calculatorState.operator
+        }`
+      : "";
 
-  if (calculatorState.operator && calculatorState.previousOperand) {
-    const symbol =
-      operatorSymbols[calculatorState.operator] || calculatorState.operator;
-    previousOperandElement.textContent = `${formatNumber(
-      calculatorState.previousOperand
-    )} ${symbol}`;
-  } else {
-    previousOperandElement.textContent = "";
-  }
+  // Apply animations based on the action
+  const handler = animationHandlers[animationType] || animationHandlers.default;
+  handler(currentText, previousText);
 }
 
-// Handle number input
+/**
+ * Handles the logic for when a number or decimal point is clicked.
+ * @param {string} number The digit or "." that was entered.
+ */
 function handleNumber(number) {
-  if (calculatorState.isResult) {
+  if (calculatorState.hasResult) {
     calculatorState.currentOperand = "0";
-    calculatorState.isResult = false;
+    calculatorState.hasResult = false;
   }
 
   // Prevent multiple decimal points
@@ -78,7 +93,7 @@ function handleNumber(number) {
   // If current is exactly "0" (positive) and input is not ".", replace it
   if (cur === "0" && number !== ".") {
     calculatorState.currentOperand = number;
-    updateDisplay();
+    updateDisplay("digit-enter");
     return;
   }
 
@@ -91,16 +106,19 @@ function handleNumber(number) {
       // "-0" + "1" => "-1" (replace the zero)
       calculatorState.currentOperand = "-" + number;
     }
-    updateDisplay();
+    updateDisplay("digit-enter");
     return;
   }
 
   // General append (covers "-1", "12", "3.4", "-0.5" etc.)
   calculatorState.currentOperand += number;
-  updateDisplay();
+  updateDisplay("digit-enter");
 }
 
-// Handle operator input
+/**
+ * Handles the logic for when an operator button is clicked.
+ * @param {string} operator The operator action name (e.g., "add", "subtract").
+ */
 function handleOperator(operator) {
   // Allow starting with a negative number: set "-0" (not append)
   if (
@@ -113,7 +131,7 @@ function handleOperator(operator) {
     if (calculatorState.currentOperand !== "-0") {
       calculatorState.currentOperand = "-0";
     }
-    updateDisplay();
+    updateDisplay("digit-enter");
     return;
   }
 
@@ -125,19 +143,23 @@ function handleOperator(operator) {
 
   // If there's already a previous operand and operator, calculate first
   if (calculatorState.previousOperand !== "" && calculatorState.operator) {
-    calculate();
+    calculate(true); // from operator
   }
 
   calculatorState.operator = operator;
   calculatorState.previousOperand = calculatorState.currentOperand;
   calculatorState.currentOperand = "0";
-  calculatorState.isResult = false;
+  calculatorState.hasResult = false;
 
-  updateDisplay();
+  updateDisplay("operator");
 }
 
-// Perform calculation
-function calculate() {
+/**
+ * Performs the calculation based on the current state.
+ * @param {boolean} [fromOperator=false] Flag to indicate if the calculation was triggered
+ * by an operator (for chained operations).
+ */
+function calculate(fromOperator = false) {
   let computation;
   const prev = parseFloat(calculatorState.previousOperand);
   const current = parseFloat(calculatorState.currentOperand);
@@ -174,53 +196,63 @@ function calculate() {
   );
   calculatorState.operator = null;
   calculatorState.previousOperand = "";
-  calculatorState.isResult = true;
-  updateDisplay();
+  calculatorState.hasResult = true;
+  // Use result animation only when equals is pressed, not for chained operations
+  updateDisplay(fromOperator ? "operator" : "result");
 }
 
-// Clear all
+/**
+ * Resets the calculator to its initial state.
+ */
 function clear() {
+  const needsAnimation =
+    calculatorState.currentOperand !== "0" ||
+    calculatorState.previousOperand !== "";
+
   calculatorState.currentOperand = "0";
   calculatorState.previousOperand = "";
   calculatorState.operator = null;
-  calculatorState.isResult = false;
-  updateDisplay();
+  calculatorState.hasResult = false;
+
+  if (needsAnimation) {
+    updateDisplay("reset");
+  }
 }
 
-// Delete last character
+/**
+ * Deletes the last character from the current operand.
+ */
 function deleteNumber() {
-  if (calculatorState.isResult) {
+  // If a result is displayed, DEL should act like a full clear.
+  if (calculatorState.hasResult) {
     clear();
     return;
   }
 
   const cur = String(calculatorState.currentOperand);
 
-  // If "-0" -> deleting should reset to "0"
-  if (cur === "-0") {
-    calculatorState.currentOperand = "0";
-    updateDisplay();
+  if (cur === "0") {
     return;
   }
 
-  // If single character (e.g. "5" or "-") -> reset to 0
-  if (cur.length <= 1 || cur === "-") {
-    calculatorState.currentOperand = "0";
-    updateDisplay();
-    return;
+  let newOperand;
+
+  if (cur.length === 1 || cur === "-0") {
+    newOperand = "0";
+  } else {
+    newOperand = cur.slice(0, -1);
+    if (newOperand === "-") {
+      newOperand = "-0";
+    }
   }
 
-  // Otherwise slice off last char
-  calculatorState.currentOperand = cur.slice(0, -1);
-
-  // If the result becomes "-" (user deleted digits of negative number), set to "0"
-  if (calculatorState.currentOperand === "-") {
-    calculatorState.currentOperand = "-0";
-  }
-
-  updateDisplay();
+  calculatorState.currentOperand = newOperand;
+  updateDisplay("digit-delete");
 }
 
+/**
+ * Sets up all event listeners for the calculator buttons and keyboard input.
+ */
 export function initializeCalculator() {
   // Event delegation for all calculator buttons
   keysContainer.addEventListener("click", (event) => {
@@ -229,17 +261,14 @@ export function initializeCalculator() {
     // Ignore clicks on the container itself
     if (!button.classList.contains("btn")) return;
 
-    // Handle numbers
     if (button.dataset.number !== undefined) {
       handleNumber(button.dataset.number);
     }
 
-    // Handle operators
     if (button.dataset.operator !== undefined) {
       handleOperator(button.dataset.operator);
     }
 
-    // Handle actions
     if (button.dataset.action !== undefined) {
       const action = button.dataset.action;
 
@@ -271,13 +300,11 @@ export function initializeCalculator() {
       handleOperator(operatorMap[key]);
     }
 
-    // Enter or equals for calculation
     if (key === "Enter" || key === "=") {
       event.preventDefault();
       calculate();
     }
 
-    // Backspace for delete
     if (key === "Backspace") {
       event.preventDefault();
       deleteNumber();
@@ -289,6 +316,5 @@ export function initializeCalculator() {
     }
   });
 
-  // Initialize display
   updateDisplay();
 }
