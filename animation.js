@@ -1,10 +1,9 @@
 import { animate } from "https://cdn.jsdelivr.net/npm/motion@12.23.24/+esm";
 
-export const prefersReducedMotion = window.matchMedia(
+const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
 
-// Animation configurations
 export const animationConfig = {
   digitEnter: {
     x: [5, 0],
