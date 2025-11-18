@@ -252,6 +252,10 @@ body {
   }
 }
 
+.calculator-title {
+  font-size: var(--font-size-number);
+}
+
 .calculator-head {
   margin-block-end: 0.5em;
 
